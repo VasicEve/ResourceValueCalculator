@@ -1,12 +1,106 @@
-﻿<Window x:Class="ResourceValueCalculator.MainWindow"
+<Window x:Class="ResourceValueCalculator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResourceValueCalculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Resource Value Calculator" Height="520" Width="860"
+        d:DataContext="{d:DesignInstance Type=local:MainViewModel}">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Text="Resource Value Calculator" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Text="Price = (Base Price × SCU Qty) × Base Quality × Profit Margin"
+                       Foreground="Gray" Margin="0,2,0,0"/>
+            <TextBlock Text="{Binding StatusMessage}" Foreground="#0A66C2"
+                       FontStyle="Italic" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Resource rows -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Resources}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  RowHeaderWidth="0"
+                  SelectionUnit="Cell"
+                  BorderBrush="#DDDDDD" BorderThickness="1">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Resource" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox Margin="2"
+                                      ItemsSource="{Binding DataContext.Catalog,
+                                                    RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                      SelectedItem="{Binding SelectedCommodity, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Name"
+                                      TextSearch.TextPath="Name"
+                                      IsEditable="True"
+                                      IsTextSearchEnabled="True"
+                                      StaysOpenOnEdit="True"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Base Price" Width="130"
+                                    Binding="{Binding BasePrice, StringFormat=0.######}"/>
+                <DataGridTextColumn Header="SCU Qty" Width="110"
+                                    Binding="{Binding ScuQty, StringFormat=0.######}"/>
+                <DataGridTextColumn Header="Base Quality" Width="110"
+                                    Binding="{Binding BaseQuality, StringFormat=0.######}"/>
+                <DataGridTextColumn Header="Price" Width="150" IsReadOnly="True"
+                                    Binding="{Binding Price, StringFormat=N2}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Margin" Value="0,0,6,0"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Remove" Margin="4,2" Padding="6,1"
+                                    Command="{Binding DataContext.RemoveCommand,
+                                              RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Add button + profit margin -->
+        <DockPanel Grid.Row="2" Margin="0,12,0,0">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Profit Margin (×)" FontWeight="SemiBold"
+                           VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBox Text="{Binding ProfitMargin, StringFormat=0.######}"
+                         Width="80" Padding="4,2" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <Button Content="+ Add Resource" HorizontalAlignment="Left" Padding="14,6"
+                    Command="{Binding AddCommand}"/>
+        </DockPanel>
+
+        <!-- Grand total -->
+        <Border Grid.Row="3" Margin="0,12,0,0" Padding="14,10"
+                Background="#F2F4F5" CornerRadius="4">
+            <DockPanel>
+                <TextBlock Text="Total Value" FontSize="16" FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding GrandTotal, StringFormat=N2}"
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
+                           FontSize="22" FontWeight="Bold" Foreground="#1A7F37"/>
+            </DockPanel>
+        </Border>
     </Grid>
 </Window>

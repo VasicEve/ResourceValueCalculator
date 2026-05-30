@@ -1,0 +1,25 @@
+# Normalize line endings on commit; check out native to each OS.
+* text=auto
+
+# C# / .NET source and project files (treated as text)
+*.cs        text diff=csharp
+*.csproj    text
+*.slnx      text
+*.sln       text eol=crlf
+*.props     text
+*.targets   text
+*.config    text
+*.json      text
+*.xml       text
+*.xaml      text
+*.md        text
+
+# Binaries — never normalize or diff
+*.dll       binary
+*.exe       binary
+*.pdb       binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
