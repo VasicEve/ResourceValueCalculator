@@ -6,16 +6,22 @@
     <InstallerPlatform>x64</InstallerPlatform>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
 
+    <!-- Set SelfContainedApp=true (CI does) to bundle the .NET runtime so the MSI needs no prerequisites.
+         Default is framework-dependent, which keeps local/solution builds small and fast. -->
+    <SelfContainedApp Condition="'$(SelfContainedApp)' == ''">false</SelfContainedApp>
+    <PublishRuntimeArgs Condition="'$(SelfContainedApp)' == 'true'">-r win-x64 --self-contained true</PublishRuntimeArgs>
+    <PublishRuntimeArgs Condition="'$(SelfContainedApp)' != 'true'">--self-contained false</PublishRuntimeArgs>
+
     <!-- The WPF app is published here, then harvested into the MSI (kept under obj/ so it's git-ignored). -->
     <AppProject>$(MSBuildThisFileDirectory)..\ResourceValueCalculator\ResourceValueCalculator.csproj</AppProject>
     <AppPublishDir>$(MSBuildThisFileDirectory)obj\app-publish\$(Configuration)</AppPublishDir>
     <DefineConstants>AppPublishDir=$(AppPublishDir)</DefineConstants>
   </PropertyGroup>
 
-  <!-- Publish the app (framework-dependent) before the installer harvests its files. -->
+  <!-- Publish the app before the installer harvests its files. -->
   <Target Name="PublishApp" BeforeTargets="BeforeBuild">
     <RemoveDir Directories="$(AppPublishDir)" />
-    <Exec Command="dotnet publish &quot;$(AppProject)&quot; -c $(Configuration) -o &quot;$(AppPublishDir)&quot; -p:DebugType=None -p:DebugSymbols=false" />
+    <Exec Command="dotnet publish &quot;$(AppProject)&quot; -c $(Configuration) $(PublishRuntimeArgs) -o &quot;$(AppPublishDir)&quot; -p:DebugType=None -p:DebugSymbols=false" />
   </Target>
 
 </Project>

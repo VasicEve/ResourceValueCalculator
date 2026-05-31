@@ -12,6 +12,14 @@ priced at the best terminal sell price pulled live from [UEX](https://uexcorp.sp
 
 ---
 
+## Download
+
+Grab the latest installer from the **[Releases page](https://github.com/VasicEve/ResourceValueCalculator/releases)** —
+download `ResourceValueCalculator-Setup.msi` and run it. The released installer is
+**self-contained**, so no .NET runtime or other prerequisites are required.
+
+---
+
 ## Features
 
 The app has three tabs:
@@ -71,13 +79,26 @@ dotnet build ResourceValueCalculator.slnx -c Release
 ```
 
 ### Build the installer (MSI)
-Requires the [WiX Toolset](https://wixtoolset.org) v6 (`dotnet tool install --global wix`).
+The [WiX Toolset](https://wixtoolset.org) v6 SDK is restored automatically by `dotnet build`.
 ```sh
 dotnet build Installer/Installer.wixproj -c Release
 # → Installer/bin/Release/ResourceValueCalculator-Setup.msi
 ```
-The MSI installs to *Program Files*, adds a Start Menu shortcut, and supports
-upgrade/uninstall.
+This produces a small, framework-dependent MSI (needs the .NET 10 Desktop Runtime).
+Add `-p:SelfContainedApp=true` to bundle the runtime into a standalone installer
+(~50 MB, no prerequisites). The MSI installs to *Program Files*, adds a Start Menu
+shortcut, and supports upgrade/uninstall.
+
+### Publishing a release
+Installers are built and attached to a GitHub Release automatically by CI
+([`.github/workflows/release.yml`](.github/workflows/release.yml)) when you push a version tag:
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+This builds the self-contained MSI on a Windows runner and uploads it to the
+[Releases page](https://github.com/VasicEve/ResourceValueCalculator/releases). You can
+also run the workflow manually from the **Actions** tab (the MSI is attached as a build artifact).
 
 ---
 

@@ -1,0 +1,42 @@
+name: Build installer
+
+# Build the self-contained MSI and publish it to a GitHub Release when a version
+# tag (e.g. v1.0.0) is pushed. Can also be run manually from the Actions tab,
+# in which case the MSI is uploaded as a build artifact.
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-installer:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Build self-contained MSI
+        run: dotnet build Installer/Installer.wixproj -c Release -p:SelfContainedApp=true
+
+      - name: Upload MSI as build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ResourceValueCalculator-Setup
+          path: Installer/bin/**/ResourceValueCalculator-Setup.msi
+          if-no-files-found: error
+
+      - name: Publish to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Installer/bin/**/ResourceValueCalculator-Setup.msi
+          generate_release_notes: true
+          fail_on_unmatched_files: true
