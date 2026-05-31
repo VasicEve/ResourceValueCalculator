@@ -1,0 +1,48 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!-- Resource Value Calculator installer.
+       Files come from the app publish folder via the AppPublishDir preprocessor variable
+       (set in Installer.wixproj). Keep UpgradeCode stable across versions for clean upgrades. -->
+  <Package Name="Resource Value Calculator"
+           Manufacturer="VasicEve"
+           Version="1.0.0.0"
+           UpgradeCode="7b1a9c2e-4d3f-4a8b-9c6d-2e5f8a1b3c4d"
+           Scope="perMachine">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Install location: C:\Program Files\Resource Value Calculator -->
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="Resource Value Calculator" />
+    </StandardDirectory>
+
+    <!-- Start Menu folder for the shortcut -->
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ShortcutFolder" Name="Resource Value Calculator" />
+    </StandardDirectory>
+
+    <!-- Harvest every published app file into INSTALLFOLDER -->
+    <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
+      <Files Include="$(var.AppPublishDir)\**" />
+    </ComponentGroup>
+
+    <!-- Start Menu shortcut (+ its uninstall cleanup) -->
+    <Component Id="StartMenuShortcut" Directory="ShortcutFolder" Guid="*">
+      <Shortcut Id="AppShortcut"
+                Name="Resource Value Calculator"
+                Description="Star Citizen resource and component value calculator"
+                Target="[INSTALLFOLDER]ResourceValueCalculator.exe"
+                WorkingDirectory="INSTALLFOLDER" />
+      <RemoveFolder Id="RemoveShortcutFolder" On="uninstall" />
+      <RegistryValue Root="HKCU" Key="Software\VasicEve\ResourceValueCalculator"
+                     Name="installed" Type="integer" Value="1" KeyPath="yes" />
+    </Component>
+
+    <Feature Id="Main" Title="Resource Value Calculator">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+
+  </Package>
+</Wix>

@@ -1,3 +1,7 @@
 <Solution>
   <Project Path="ResourceValueCalculator/ResourceValueCalculator.csproj" />
+  <Project Path="Installer/Installer.wixproj" Id="c32ad0f4-da18-4d17-b8c5-4ec591474b7a">
+    <Platform Project="x86" />
+    <Build />
+  </Project>
 </Solution>

@@ -1,0 +1,21 @@
+<Project Sdk="WixToolset.Sdk/6.0.2">
+
+  <PropertyGroup>
+    <OutputName>ResourceValueCalculator-Setup</OutputName>
+    <OutputType>Package</OutputType>
+    <InstallerPlatform>x64</InstallerPlatform>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+
+    <!-- The WPF app is published here, then harvested into the MSI (kept under obj/ so it's git-ignored). -->
+    <AppProject>$(MSBuildThisFileDirectory)..\ResourceValueCalculator\ResourceValueCalculator.csproj</AppProject>
+    <AppPublishDir>$(MSBuildThisFileDirectory)obj\app-publish\$(Configuration)</AppPublishDir>
+    <DefineConstants>AppPublishDir=$(AppPublishDir)</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Publish the app (framework-dependent) before the installer harvests its files. -->
+  <Target Name="PublishApp" BeforeTargets="BeforeBuild">
+    <RemoveDir Directories="$(AppPublishDir)" />
+    <Exec Command="dotnet publish &quot;$(AppProject)&quot; -c $(Configuration) -o &quot;$(AppPublishDir)&quot; -p:DebugType=None -p:DebugSymbols=false" />
+  </Target>
+
+</Project>
