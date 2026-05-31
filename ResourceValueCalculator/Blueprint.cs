@@ -1,6 +1,6 @@
 namespace ResourceValueCalculator;
 
-/// <summary>A craftable component and the materials required to build it (from star-crafting.com).</summary>
+/// <summary>A craftable component and the materials required to build it (from scunpacked-data).</summary>
 public class Blueprint
 {
     public string Name { get; init; } = "";

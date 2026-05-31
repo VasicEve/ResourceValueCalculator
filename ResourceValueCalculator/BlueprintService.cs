@@ -5,7 +5,7 @@ namespace ResourceValueCalculator;
 
 /// <summary>
 /// Loads the bundled component blueprint catalog (blueprints.json, shipped next to the app).
-/// Data extracted from star-crafting.com. To add/update components, edit blueprints.json.
+/// Data from scunpacked-data (StarCitizenWiki — datamined SC game files). To add/update, edit blueprints.json.
 /// </summary>
 public static class BlueprintService
 {

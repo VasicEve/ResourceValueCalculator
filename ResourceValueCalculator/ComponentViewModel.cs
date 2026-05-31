@@ -10,7 +10,7 @@ public class ComponentViewModel : ResourceListViewModel
 {
     private IReadOnlyList<Commodity> _catalog = Array.Empty<Commodity>();
 
-    /// <summary>Craftable components (blueprints) loaded from blueprints.json (star-crafting.com).</summary>
+    /// <summary>Craftable components (blueprints) loaded from blueprints.json (scunpacked-data).</summary>
     public ObservableCollection<Blueprint> Blueprints { get; } = new();
 
     private Blueprint? _selectedBlueprint;
@@ -37,7 +37,7 @@ public class ComponentViewModel : ResourceListViewModel
                 Blueprints.Add(b);
 
             StatusMessage = Blueprints.Count > 0
-                ? $"{Blueprints.Count} components loaded (star-crafting.com). Pick one to see the resources it requires."
+                ? $"{Blueprints.Count} components loaded (scunpacked-data). Pick one to see the resources it requires."
                 : "No blueprints found in blueprints.json.";
         }
         catch (Exception ex)
