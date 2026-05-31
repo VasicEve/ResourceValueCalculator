@@ -18,7 +18,7 @@ public class ImportViewModel : INotifyPropertyChanged
         ImportCommand = new RelayCommand(async _ => await ImportAsync(), _ => !IsBusy);
         _statusMessage = BlueprintService.HasUserData
             ? "Using imported blueprints. Click Import to refresh from scunpacked-data."
-            : "Using the bundled blueprint catalog. Click Import to fetch the latest from scunpacked-data.";
+            : "No data imported yet — click Import to load blueprints from scunpacked-data and unlock the Calculator and Components tabs.";
     }
 
     public string SourceUrl => ScunpackedImporter.SourceUrl;

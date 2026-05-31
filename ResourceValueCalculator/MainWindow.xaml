@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="Resource Value Calculator" Height="600" Width="920"
         d:DataContext="{d:DesignInstance Type=local:ShellViewModel}">
-    <TabControl Margin="8">
+    <TabControl Margin="8" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
         <TabControl.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVis"/>
         </TabControl.Resources>
 
         <!-- ============================ Calculator tab ============================ -->
-        <TabItem Header="Resource Value Calculator">
+        <TabItem Header="Resource Value Calculator"
+                 Visibility="{Binding HasImportedData, Converter={StaticResource BoolToVis}}">
             <Grid DataContext="{Binding Calculator}" Margin="12"
                   d:DataContext="{d:DesignInstance Type=local:CalculatorViewModel}">
                 <Grid.RowDefinitions>
@@ -109,7 +110,8 @@
         </TabItem>
 
         <!-- ============================ Components tab ============================ -->
-        <TabItem Header="Components">
+        <TabItem Header="Components"
+                 Visibility="{Binding HasImportedData, Converter={StaticResource BoolToVis}}">
             <Grid DataContext="{Binding Components}" Margin="12"
                   d:DataContext="{d:DesignInstance Type=local:ComponentViewModel}">
                 <Grid.RowDefinitions>
