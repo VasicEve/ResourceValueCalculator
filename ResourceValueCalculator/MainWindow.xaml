@@ -8,6 +8,9 @@
         Title="Resource Value Calculator" Height="600" Width="920"
         d:DataContext="{d:DesignInstance Type=local:ShellViewModel}">
     <TabControl Margin="8">
+        <TabControl.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </TabControl.Resources>
 
         <!-- ============================ Calculator tab ============================ -->
         <TabItem Header="Resource Value Calculator">
@@ -198,6 +201,29 @@
                                    FontSize="22" FontWeight="Bold" Foreground="#1A7F37"/>
                     </DockPanel>
                 </Border>
+            </Grid>
+        </TabItem>
+
+        <!-- ============================ Update Data tab ============================ -->
+        <TabItem Header="Update Data">
+            <Grid DataContext="{Binding Import}" Margin="16"
+                  d:DataContext="{d:DesignInstance Type=local:ImportViewModel}">
+                <StackPanel MaxWidth="720" HorizontalAlignment="Left">
+                    <TextBlock Text="Update component blueprints" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Margin="0,6,0,0" TextWrapping="Wrap" Foreground="#444444"
+                               Text="Fetches the latest crafting blueprints from the scunpacked-data project (datamined Star Citizen game files) on GitHub, distills each blueprint's bill of materials, and updates the Components tab. The imported data is saved locally and reused on the next launch."/>
+                    <TextBlock Text="Source (GitHub):" FontWeight="SemiBold" Margin="0,12,0,0" Foreground="#444444"/>
+                    <TextBlock Text="{Binding SourceUrl, Mode=OneWay}" Foreground="Gray" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,16,0,0" VerticalAlignment="Center">
+                        <Button Content="Import latest from GitHub" Padding="16,8" FontWeight="SemiBold"
+                                Command="{Binding ImportCommand}"/>
+                        <ProgressBar Width="180" Height="14" Margin="14,0,0,0" IsIndeterminate="True"
+                                     VerticalAlignment="Center"
+                                     Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding StatusMessage}" Margin="0,16,0,0" TextWrapping="Wrap"
+                               Foreground="#0A66C2" FontStyle="Italic"/>
+                </StackPanel>
             </Grid>
         </TabItem>
 
