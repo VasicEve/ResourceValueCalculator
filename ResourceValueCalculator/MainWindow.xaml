@@ -160,7 +160,17 @@
                         <DataGridTextColumn Header="Qty" Width="90" IsReadOnly="True"
                                             Binding="{Binding ScuQty, StringFormat=0.######}"/>
                         <DataGridTextColumn Header="Unit" Width="70" IsReadOnly="True"
-                                            Binding="{Binding Unit}"/>
+                                            Binding="{Binding Unit}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Unit}" Value="items">
+                                            <Setter Property="ToolTip" Value="1000 units = 1 SCU (priced per SCU)"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
                         <!-- Editable: adjust each material's quality to see its effect on value -->
                         <DataGridTextColumn Header="Base Quality" Width="120"
                                             Binding="{Binding BaseQuality, StringFormat=0.######}">

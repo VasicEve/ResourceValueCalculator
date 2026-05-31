@@ -63,8 +63,16 @@ public class ResourceRow : INotifyPropertyChanged
     /// <summary>Quantity unit shown in the grid: "SCU" (raw resources) or "items" (individual item materials).</summary>
     public string Unit { get; set; } = "SCU";
 
-    /// <summary>(BasePrice × ScuQty) × BaseQuality × Margin</summary>
-    public decimal Price => BasePrice * ScuQty * BaseQuality * Margin;
+    // Item-count materials are sold in milli-SCU: 1000 units = 1 SCU
+    // (e.g. 100 units of Aphorite = 0.1 SCU; verified on the in-game commodity market).
+    private const decimal UnitsPerScu = 1000m;
+
+    /// <summary>The quantity expressed in SCU — item-count materials are converted from units.</summary>
+    private decimal QuantityScu =>
+        string.Equals(Unit, "items", StringComparison.OrdinalIgnoreCase) ? ScuQty / UnitsPerScu : ScuQty;
+
+    /// <summary>(BasePrice × quantity-in-SCU) × BaseQuality × Margin</summary>
+    public decimal Price => BasePrice * QuantityScu * BaseQuality * Margin;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
