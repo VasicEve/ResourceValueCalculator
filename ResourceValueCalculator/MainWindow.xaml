@@ -122,10 +122,15 @@
                     <TextBlock Text="{Binding StatusMessage}" Foreground="#0A66C2"
                                FontStyle="Italic" Margin="0,4,0,0" TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="Category" FontWeight="SemiBold"
+                                   VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox Width="190" Margin="0,0,16,0"
+                                  ItemsSource="{Binding Categories}"
+                                  SelectedItem="{Binding SelectedCategory}"/>
                         <TextBlock Text="Component" FontWeight="SemiBold"
                                    VerticalAlignment="Center" Margin="0,0,8,0"/>
                         <ComboBox Width="380"
-                                  ItemsSource="{Binding Blueprints}"
+                                  ItemsSource="{Binding FilteredBlueprints}"
                                   SelectedItem="{Binding SelectedBlueprint}"
                                   DisplayMemberPath="Name"
                                   TextSearch.TextPath="Name"
