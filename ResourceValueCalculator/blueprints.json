@@ -1,0 +1,410 @@
+﻿[
+    {
+        "name":  "Volt Sniper (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Gold",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Lightning Bolt Co. Sniper (Energy) Variant IMP01",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Lightning Bolt Co. Sniper (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Kastak Arms Sniper (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          }
+                      ]
+    },
+    {
+        "name":  "Klaus \u0026 Werner Sniper (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Gemini Sniper (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          }
+                      ]
+    },
+    {
+        "name":  "Behring Sniper (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Taranite",
+                              "type":  "Mineral",
+                              "quantity":  0.06
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          }
+                      ]
+    },
+    {
+        "name":  "Volt SMG (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Tungsten",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          },
+                          {
+                              "name":  "Gold",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Unbranded SMG (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Torite",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Kastak Arms SMG (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Corundum",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Klaus \u0026 Werner SMG (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Riccite",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Gemini SMG (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Aluminum",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Behring SMG (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Savrilium",
+                              "type":  "Mineral",
+                              "quantity":  0.03
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Volt Shotgun (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Torite",
+                              "type":  "Mineral",
+                              "quantity":  0.015
+                          },
+                          {
+                              "name":  "Gold",
+                              "type":  "Mineral",
+                              "quantity":  0.01
+                          }
+                      ]
+    },
+    {
+        "name":  "Unbranded Shotgun (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Kastak Arms Shotgun (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Torite",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Kastak Arms Shotgun (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Torite",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Gemini Shotgun (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Savrilium",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Behring Shotgun (Ballistic)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Torite",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Volt Rifle (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Tungsten",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Gold",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Unbranded Rifle (Multi)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Hephaestanite",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          },
+                          {
+                              "name":  "Iron",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Kastak Arms Rifle (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Riccite",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Beryl",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    },
+    {
+        "name":  "Klaus \u0026 Werner Rifle (Energy)",
+        "category":  "FPS Weapon",
+        "materials":  [
+                          {
+                              "name":  "Corundum",
+                              "type":  "Mineral",
+                              "quantity":  0.04
+                          },
+                          {
+                              "name":  "Copper",
+                              "type":  "Mineral",
+                              "quantity":  0.02
+                          }
+                      ]
+    }
+]

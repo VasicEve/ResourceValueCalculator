@@ -10,9 +10,9 @@ namespace ResourceValueCalculator
         public MainWindow()
         {
             InitializeComponent();
-            var vm = new MainViewModel();
+            var vm = new ShellViewModel();
             DataContext = vm;
-            Loaded += async (_, _) => await vm.LoadCatalogAsync();
+            Loaded += async (_, _) => await vm.LoadAsync();
         }
     }
 }
