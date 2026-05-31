@@ -1,4 +1,4 @@
-name: Build installer
+name: Release
 
 # Build the self-contained MSI and publish it to a GitHub Release when a version
 # tag (e.g. v1.0.0) is pushed. Can also be run manually from the Actions tab,
