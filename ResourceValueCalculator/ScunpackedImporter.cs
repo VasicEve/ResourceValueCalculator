@@ -54,8 +54,8 @@ public static class ScunpackedImporter
             if (req.TryGetProperty("Children", out var groups) && groups.ValueKind == JsonValueKind.Array)
             {
                 foreach (var g in groups.EnumerateArray())
-                    if (TryFirstResource(g, out var resName, out var qty) && !string.IsNullOrWhiteSpace(resName))
-                        materials.Add(new BlueprintMaterial { Name = resName!, Quantity = decimal.Round(qty, 6) });
+                    if (TryFirstMaterial(g, out var matName, out var qty, out var unit) && !string.IsNullOrWhiteSpace(matName))
+                        materials.Add(new BlueprintMaterial { Name = matName!, Quantity = decimal.Round(qty, 6), Unit = unit });
             }
             if (materials.Count == 0) continue;
 
@@ -66,23 +66,41 @@ public static class ScunpackedImporter
         return DedupeAndDisambiguate(raw);
     }
 
-    /// <summary>Depth-first: the first "resource" node under a requirement group.</summary>
-    private static bool TryFirstResource(JsonElement node, out string? name, out decimal quantity)
+    /// <summary>
+    /// Depth-first: the first material in a requirement group's subtree. A slot is filled by either a
+    /// raw "resource" (quantity in SCU) or an "item" such as a refined material (quantity is a count).
+    /// </summary>
+    private static bool TryFirstMaterial(JsonElement node, out string? name, out decimal quantity, out string unit)
     {
         name = null;
         quantity = 0m;
+        unit = "SCU";
         if (node.ValueKind != JsonValueKind.Object) return false;
-        if (node.TryGetProperty("Kind", out var k) &&
-            string.Equals(k.GetString(), "resource", StringComparison.Ordinal))
+
+        if (node.TryGetProperty("Kind", out var k))
         {
-            name = node.TryGetProperty("Name", out var rn) ? rn.GetString() : null;
-            if (node.TryGetProperty("QuantityScu", out var q) && q.ValueKind == JsonValueKind.Number)
-                q.TryGetDecimal(out quantity);
-            return name != null;
+            var kind = k.GetString();
+            if (string.Equals(kind, "resource", StringComparison.Ordinal))
+            {
+                name = node.TryGetProperty("Name", out var rn) ? rn.GetString() : null;
+                if (node.TryGetProperty("QuantityScu", out var q) && q.ValueKind == JsonValueKind.Number)
+                    q.TryGetDecimal(out quantity);
+                unit = "SCU";
+                return name != null;
+            }
+            if (string.Equals(kind, "item", StringComparison.Ordinal))
+            {
+                name = node.TryGetProperty("Name", out var inm) ? inm.GetString() : null;
+                if (node.TryGetProperty("Quantity", out var q) && q.ValueKind == JsonValueKind.Number)
+                    q.TryGetDecimal(out quantity);
+                unit = "items"; // individual items, not SCU
+                return name != null;
+            }
         }
+
         if (node.TryGetProperty("Children", out var children) && children.ValueKind == JsonValueKind.Array)
             foreach (var c in children.EnumerateArray())
-                if (TryFirstResource(c, out name, out quantity)) return true;
+                if (TryFirstMaterial(c, out name, out quantity, out unit)) return true;
         return false;
     }
 

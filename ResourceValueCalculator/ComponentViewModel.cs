@@ -113,7 +113,8 @@ public class ComponentViewModel : ResourceListViewModel
                 ScuQty = material.Quantity,
                 BaseQuality = 1m,
                 BasePrice = LookupPrice(material.Name),
-                Margin = ProfitMargin
+                Margin = ProfitMargin,
+                Unit = material.Unit
             });
         }
     }

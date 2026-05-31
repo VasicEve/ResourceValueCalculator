@@ -60,6 +60,9 @@ public class ResourceRow : INotifyPropertyChanged
         set { if (SetField(ref _margin, value)) OnPropertyChanged(nameof(Price)); }
     }
 
+    /// <summary>Quantity unit shown in the grid: "SCU" (raw resources) or "items" (individual item materials).</summary>
+    public string Unit { get; set; } = "SCU";
+
     /// <summary>(BasePrice × ScuQty) × BaseQuality × Margin</summary>
     public decimal Price => BasePrice * ScuQty * BaseQuality * Margin;
 

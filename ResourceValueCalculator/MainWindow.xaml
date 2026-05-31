@@ -157,8 +157,10 @@
                                             Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Base Price" Width="130" IsReadOnly="True"
                                             Binding="{Binding BasePrice, StringFormat=N2}"/>
-                        <DataGridTextColumn Header="SCU Qty" Width="110" IsReadOnly="True"
+                        <DataGridTextColumn Header="Qty" Width="90" IsReadOnly="True"
                                             Binding="{Binding ScuQty, StringFormat=0.######}"/>
+                        <DataGridTextColumn Header="Unit" Width="70" IsReadOnly="True"
+                                            Binding="{Binding Unit}"/>
                         <!-- Editable: adjust each material's quality to see its effect on value -->
                         <DataGridTextColumn Header="Base Quality" Width="120"
                                             Binding="{Binding BaseQuality, StringFormat=0.######}">
