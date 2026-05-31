@@ -15,6 +15,7 @@
     <AppProject>$(MSBuildThisFileDirectory)..\ResourceValueCalculator\ResourceValueCalculator.csproj</AppProject>
     <AppPublishDir>$(MSBuildThisFileDirectory)obj\app-publish\$(Configuration)</AppPublishDir>
     <DefineConstants>AppPublishDir=$(AppPublishDir);ProductVersion=$(MsiProductVersion)</DefineConstants>
+    <ProjectGuid>{c32ad0f4-da18-4d17-b8c5-4ec591474b7a}</ProjectGuid>
   </PropertyGroup>
   <!-- Publish the app before the installer harvests its files. -->
   <Target Name="PublishApp" BeforeTargets="BeforeBuild">
