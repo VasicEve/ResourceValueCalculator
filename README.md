@@ -1,5 +1,8 @@
 # Resource Value Calculator
 
+[![Latest release](https://img.shields.io/github/v/release/VasicEve/ResourceValueCalculator?sort=semver&label=download)](https://github.com/VasicEve/ResourceValueCalculator/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/VasicEve/ResourceValueCalculator/total)](https://github.com/VasicEve/ResourceValueCalculator/releases)
+
 A Windows desktop app for **Star Citizen** that values raw resources and crafting
 components using **live UEX market prices** and **datamined crafting blueprints**.
 

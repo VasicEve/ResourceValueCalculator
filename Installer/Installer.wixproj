@@ -1,27 +1,24 @@
-<Project Sdk="WixToolset.Sdk/6.0.2">
-
+<Project Sdk="WixToolset.Sdk/6.0.2" ToolsVersion="4.0">
   <PropertyGroup>
     <OutputName>ResourceValueCalculator-Setup</OutputName>
     <OutputType>Package</OutputType>
     <InstallerPlatform>x64</InstallerPlatform>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-
+    <!-- MSI ProductVersion. CI sets this from the pushed git tag (e.g. v1.2.0 -> 1.2.0). -->
+    <MsiProductVersion Condition="'$(MsiProductVersion)' == ''">1.0.0</MsiProductVersion>
     <!-- Set SelfContainedApp=true (CI does) to bundle the .NET runtime so the MSI needs no prerequisites.
          Default is framework-dependent, which keeps local/solution builds small and fast. -->
     <SelfContainedApp Condition="'$(SelfContainedApp)' == ''">false</SelfContainedApp>
     <PublishRuntimeArgs Condition="'$(SelfContainedApp)' == 'true'">-r win-x64 --self-contained true</PublishRuntimeArgs>
     <PublishRuntimeArgs Condition="'$(SelfContainedApp)' != 'true'">--self-contained false</PublishRuntimeArgs>
-
     <!-- The WPF app is published here, then harvested into the MSI (kept under obj/ so it's git-ignored). -->
     <AppProject>$(MSBuildThisFileDirectory)..\ResourceValueCalculator\ResourceValueCalculator.csproj</AppProject>
     <AppPublishDir>$(MSBuildThisFileDirectory)obj\app-publish\$(Configuration)</AppPublishDir>
-    <DefineConstants>AppPublishDir=$(AppPublishDir)</DefineConstants>
+    <DefineConstants>AppPublishDir=$(AppPublishDir);ProductVersion=$(MsiProductVersion)</DefineConstants>
   </PropertyGroup>
-
   <!-- Publish the app before the installer harvests its files. -->
   <Target Name="PublishApp" BeforeTargets="BeforeBuild">
     <RemoveDir Directories="$(AppPublishDir)" />
     <Exec Command="dotnet publish &quot;$(AppProject)&quot; -c $(Configuration) $(PublishRuntimeArgs) -o &quot;$(AppPublishDir)&quot; -p:DebugType=None -p:DebugSymbols=false" />
   </Target>
-
 </Project>

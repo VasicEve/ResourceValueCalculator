@@ -24,7 +24,12 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Build self-contained MSI
-        run: dotnet build Installer/Installer.wixproj -c Release -p:SelfContainedApp=true
+        shell: pwsh
+        run: |
+          $ver = '1.0.0'
+          if ($env:GITHUB_REF -like 'refs/tags/v*') { $ver = $env:GITHUB_REF_NAME.TrimStart('v') }
+          Write-Host "Building installer version $ver"
+          dotnet build Installer/Installer.wixproj -c Release -p:SelfContainedApp=true -p:MsiProductVersion=$ver
 
       - name: Upload MSI as build artifact
         uses: actions/upload-artifact@v4
